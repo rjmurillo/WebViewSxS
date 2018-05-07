@@ -1,0 +1,115 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebBrowserSxS"
+        xmlns:WPF="clr-namespace:Microsoft.Toolkit.Win32.UI.Controls.WPF;assembly=Microsoft.Toolkit.Win32.UI.Controls" x:Class="WebBrowserSxS.MainWindow"
+        mc:Ignorable="d"
+        Title="WebView WebBrowser SxS" Height="450" Width="800">
+    <Window.CommandBindings>
+
+        <CommandBinding CanExecute="BrowseBack_OnCanExecute"
+
+                        Command="NavigationCommands.BrowseBack"
+
+                        Executed="BrowseBack_OnExecuted" />
+
+        <CommandBinding CanExecute="BrowseForward_CanExecute"
+
+                        Command="NavigationCommands.BrowseForward"
+
+                        Executed="BrowseForward_OnExecuted" />
+
+        <CommandBinding CanExecute="GoToPage_CanExecute"
+
+                        Command="NavigationCommands.GoToPage"
+
+                        Executed="GoToPage_OnExecuted" />
+
+    </Window.CommandBindings>
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+
+        <Grid Height="30" Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="30" />
+
+                <ColumnDefinition Width="30" />
+
+                <ColumnDefinition Width="*" />
+
+                <ColumnDefinition Width="30" />
+
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+
+                    Command="NavigationCommands.BrowseBack">
+
+                <TextBlock Text="&lt;" />
+
+            </Button>
+
+            <Button Grid.Column="1"
+
+                    Width="30"
+
+                    Command="NavigationCommands.BrowseForward">
+
+                <TextBlock Text="&gt;" />
+
+            </Button>
+
+            <TextBox x:Name="Url"
+
+                     Grid.Column="2"
+
+                     Padding="3,0"
+
+                     VerticalContentAlignment="Center"
+
+                     FontSize="16"
+
+                     KeyUp="Url_OnKeyUp"
+
+                     Text="{Binding Source, ElementName=WebView1, Mode=TwoWay}"
+
+                     TextWrapping="NoWrap" />
+
+            <Button Grid.Column="3"
+
+                    Command="NavigationCommands.GoToPage">
+
+                <TextBlock Text="Go" />
+
+            </Button>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="IE11"/>
+            <WebBrowser x:Name="WebBrowser" Grid.Column="1" Grid.Row="1" Source="https://html5test.com" />
+
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Edge" />
+            <WPF:WebView x:Name="WebView" Grid.Column="0" Grid.Row="1" Source="https://html5test.com" />
+
+        </Grid>
+    </Grid>
+
+</Window>
